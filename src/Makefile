@@ -11,7 +11,7 @@ CP_PATH = "../addons/$(NAME).so"
 CC = /usr/bin/g++
 
 # link flags for your mod, make sure to include any special libraries here
-LDFLAGS = lib/libtier0.so -shared -m32
+LDFLAGS = bin/libtier0.so -shared -m32
 
 # flags passed to the c compiler
 CFLAGS = \
