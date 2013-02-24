@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="ifaces.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="name.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="openfov.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="util.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="advspec.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="transvm.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="vmthooks.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="dlfilter.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ifaces.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="openfov.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="name.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="advspec.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="transvm.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="vmthooks.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="dlfilter.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="headers">
+      <UniqueIdentifier>{7b0bdb0a-989c-4c50-bc0d-c75bf2aba228}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{6c5b35be-04a0-4b80-bcbf-5999f425c8ba}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
