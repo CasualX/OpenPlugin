@@ -88,7 +88,7 @@ RecvProp* NetworkedVar( const char* cls, int* offset_opt, const char* const* var
 				if ( !*++vars )
 					return prop;
 			}
-			while ( table = prop->pDataTable );
+			while ( (table = prop->pDataTable) );
 			break;
 		}
 	}

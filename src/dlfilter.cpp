@@ -28,7 +28,7 @@ bool CDownloadFilter::Init()
 		"\x55\x89\xE5\x83\xEC\x48\x8B\x45\x10\x89\x5D\xF4\x8B\x5D\x14\x89",
 		"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF" ) )
 	{
-		if ( pInst = **(void***)( p+0x40+1 ) )
+		if (( pInst = **(void***)( p+0x40+1 ) ))
 		{
 			pRetAddr = p+0x5D;		
 #endif

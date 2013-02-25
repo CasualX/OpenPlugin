@@ -42,7 +42,7 @@ bool CNameEnabler::Init()
 	{
 		ret = (unsigned int)p + 16; // Not x64 compatible etc..
 #endif
-		if ( name = Ifaces.pCvar->FindVar( "name" ) )
+		if ( (name = Ifaces.pCvar->FindVar( "name" )) )
 		{
 			name->fnChangeCallback = &OnChangeName;
 			return true;

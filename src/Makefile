@@ -7,18 +7,22 @@ DEBUG = no
 # Directory where the module will go after the build is done
 CP_PATH = "../addons/$(NAME).so"
 
-# Linker & compiler
-CC = /usr/bin/g++
+# Linker & compiler - g++ or clang++ can be used
+CC = g++
 
 # link flags for your mod, make sure to include any special libraries here
 LDFLAGS = bin/libtier0.so -shared -m32
 
 # flags passed to the c compiler
 CFLAGS = \
-	-march=pentium3 -mmmx -msse -mfpmath=sse -m32 \
+	-march=pentium3 -mmmx -msse -m32 \
 	-fvisibility=hidden -fvisibility-inlines-hidden \
 	-fno-strict-aliasing -Wno-delete-non-virtual-dtor -Wno-unused -Werror \
 	-D_LINUX -DLINUX -DOPENPLUGIN_EXPORTS
+
+ifeq ($(CC), g++)
+	CFLAGS += -mfpmath=sse
+endif
 	
 # special flags depending if we are in release or debug mode
 ifeq ($(DEBUG), yes)

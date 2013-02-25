@@ -142,13 +142,15 @@ void *DelayLoadPlugin( void * )
 #ifndef _LINUX
 	do Sleep( 500 );
 #else
-	do sleep( 0.5 );
+	do sleep( 1 );
 #endif
 	while ( !Ifaces.pCvar->FindVar( "viewmodel_fov_demo" ) );
 		//Sleep( 500 );
 	PluginInit();
 #ifndef _LINUX
 	return 0;
+#else
+	pthread_exit(NULL);
 #endif
 }
 
