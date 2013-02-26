@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "ifaces.h"
 #include "util.h"
+#include "sdk/cdll_int.h"
 
 
 Interfaces Ifaces;
@@ -11,27 +12,19 @@ bool Interfaces::Init()
 	// Grab module handles
 #ifndef _LINUX
 	hmEngine = ::GetModuleHandleA( "engine.dll" );
-	hmClient = ::GetModuleHandleA( "client.dll" );
 	hmTier0 = ::GetModuleHandleA( "tier0.dll" );
 #else
 	hmEngine = dlopen("engine.so", RTLD_LAZY);
-	hmClient = dlopen("tf/bin/client.so", RTLD_LAZY);
 	hmTier0 = dlopen("libtier0.so", RTLD_LAZY);
 #endif
 
-	if ( !hmEngine || !hmClient || !hmTier0 )
+	if ( !hmEngine || !hmTier0 )
 		return false;
 
-	// Grab CreateInterfaceFns
+	// Grab engine CreateInterfaceFn
 	// Note that we can access all interfaces (except client.dll/server.dll ones) through the pfnAppSystem function.
-		
-#ifndef _LINUX
-	pfnClient = (CreateInterfaceFn) ::GetProcAddress( (HMODULE)hmClient, "CreateInterface" );
-	pfnEngine = (CreateInterfaceFn) ::GetProcAddress( (HMODULE)hmEngine, "CreateInterface" );
-#else
-	pfnClient = (CreateInterfaceFn) dlsym( hmClient, "CreateInterface" );
-	pfnEngine = (CreateInterfaceFn) dlsym( hmEngine, "CreateInterface" );
-#endif		
+
+	pfnEngine = (CreateInterfaceFn) GetFuncAddress( hmEngine, "CreateInterface" );	
 
 #ifndef _LINUX	
 	if ( void* p = SigScan( hmEngine,
@@ -48,24 +41,45 @@ bool Interfaces::Init()
 		pfnAppSystem = **(CreateInterfaceFn**)( (char*)p + 0xD );
 	}
 #endif
-	if ( !pfnClient || !pfnAppSystem || !pfnEngine ) 
+	if ( !pfnAppSystem || !pfnEngine ) 
 		return false;
 	
 	// Grab the interfaces
 
 	pEngine			= (IVEngineClient*)		pfnAppSystem( "VEngineClient013",		NULL );
-	pEvents			= (IGameEventManager2*)	pfnAppSystem( "GAMEEVENTSMANAGER002",	NULL );
+	pEvents			= (IGameEventManager2*)		pfnAppSystem( "GAMEEVENTSMANAGER002",		NULL );
 	pVGUI			= (IEngineVGui*)		pfnAppSystem( "VEngineVGui001",			NULL );
-	pModelInfo		= (IVModelInfoClient*)	pfnAppSystem( "VModelInfoClient006",	NULL );
-	pModelRender	= (IVModelRender*)		pfnAppSystem( "VEngineModel016",		NULL );
+	pModelInfo		= (IVModelInfoClient*)		pfnAppSystem( "VModelInfoClient006",		NULL );
+	pModelRender		= (IVModelRender*)		pfnAppSystem( "VEngineModel016",		NULL );
 	pOverlay		= (IVDebugOverlay*)		pfnAppSystem( "VDebugOverlay003",		NULL );
-	pRenderView		= (IVRenderView*)		pfnAppSystem( "VEngineRenderView013",	NULL );
-	pMaterial		= (IMaterialSystem*)	pfnAppSystem( "VMaterialSystem080",		NULL );
+	pRenderView		= (IVRenderView*)		pfnAppSystem( "VEngineRenderView013",		NULL );
+	pMaterial		= (IMaterialSystem*)		pfnAppSystem( "VMaterialSystem080",		NULL );
 	
-	pClient			= (IBaseClientDLL*)		pfnClient( "VClient017",				NULL );
-	pEntityList		= (IClientEntityList*)	pfnClient( "VClientEntityList003",		NULL );
+	
+	// Grab client module handle
+#ifndef _LINUX
+	hmClient = ::GetModuleHandleA( "client.dll" );
+#else
+	const char* szGameDir = pEngine->GetGameDirectory();
+	char szClientBinaryPath[FILENAME_MAX];
+	snprintf(szClientBinaryPath, sizeof(szClientBinaryPath), "%s/bin/client.so", szGameDir);
+	
+	hmClient = dlopen(szClientBinaryPath, RTLD_LAZY);
+#endif
+	
+	if(!hmClient)
+		return false;
+	
+	// Grab client CreateInterfaceFn
+	pfnClient = (CreateInterfaceFn) GetFuncAddress( hmClient, "CreateInterface" );
+	
+	if(!pfnClient)
+		return false;
+	
+	pClient			= (IBaseClientDLL*)		pfnClient( "VClient017",			NULL );
+	pEntityList		= (IClientEntityList*)		pfnClient( "VClientEntityList003",		NULL );
 
-	pCvar			= (ICvar*)				pfnAppSystem( "VEngineCvar004",			NULL );
+	pCvar			= (ICvar*)			pfnAppSystem( "VEngineCvar004",			NULL );
 	pSurface		= (ISurface*)			pfnAppSystem( "VGUI_Surface030",		NULL );
 
 #ifndef _LINUX

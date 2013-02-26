@@ -13,7 +13,9 @@
 //#include "protect.h"
 #include "dlfilter.h"
 
+#ifdef _LINUX
 pthread_t delay_thread;
+#endif
 
 inline ConVar* UnlockVar( const char* name )
 {
