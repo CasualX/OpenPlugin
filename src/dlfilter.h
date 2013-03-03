@@ -4,6 +4,14 @@
 #include "sdk.h"
 #include "vmthooks.h"
 
+#ifdef _LINUX
+#define __fastcall
+#define __thiscall
+#define EDX
+#else
+#define EDX int edx,
+#endif
+
 class CDownloadFilter
 {
 public:

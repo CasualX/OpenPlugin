@@ -39,7 +39,7 @@ void COpenPlugin::Unload( void )
 }
 const char* COpenPlugin::GetPluginDescription( void )
 {
-	return "OpenPlugin version 1.4 by Casual! Build "__DATE__" "__TIME__;
+	return "OpenPlugin version 1.4 by Casual! Build " __DATE__ " " __TIME__ ;
 }
 void COpenPlugin::GameFrame( bool simulating )
 {

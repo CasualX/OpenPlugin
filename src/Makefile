@@ -15,7 +15,7 @@ LDFLAGS = bin/libtier0.so -shared -m32
 
 # flags passed to the c compiler
 CFLAGS = \
-	-march=pentium3 -mmmx -msse -m32 \
+	-march=pentium3 -mmmx -msse -m32 -std=c++11 \
 	-fvisibility=hidden -fvisibility-inlines-hidden \
 	-fno-strict-aliasing -Wno-delete-non-virtual-dtor -Wno-unused -Werror \
 	-D_LINUX -DLINUX -DOPENPLUGIN_EXPORTS

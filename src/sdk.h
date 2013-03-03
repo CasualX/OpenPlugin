@@ -1,20 +1,6 @@
 #ifndef HGUARD_OPENFOV_SDK
 #define HGUARD_OPENFOV_SDK
 
-
-#ifdef _LINUX
-#define __fastcall
-#define __thiscall
-#define EDX
-#else
-#define EDX int edx,
-#endif
-
-#ifdef _LINUX
-void __attribute__ ((constructor)) LoadFunc();
-void __attribute__ ((destructor)) UnloadFunc();
-#endif
-
 class ICvar;
 class IBaseClientDLL;
 class IClientNetworkable;

@@ -13,7 +13,6 @@
 #include <windows.h>
 #else
 #include <unistd.h>
-#include <pthread.h>
 #include <dlfcn.h>
 #include <sys/stat.h>
 #endif
@@ -22,7 +21,7 @@
 #include <cstring>
 #include <cstdio>
 #include <cstdlib>
-
+#include <thread>
 
 #ifdef NDEBUG
 #ifndef _LINUX

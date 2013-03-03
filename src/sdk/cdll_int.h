@@ -235,9 +235,9 @@ class IBaseClientDLL
 {
 public:
 	// Called once when the client DLL is loaded
-	virtual int				Init( CreateInterfaceFn appSystemFactory, 
-									CreateInterfaceFn physicsFactory,
-									class CGlobalVarsBase *pGlobals ) = 0;
+	virtual int			Init( CreateInterfaceFn appSystemFactory, 
+								CreateInterfaceFn physicsFactory,
+								class CGlobalVarsBase *pGlobals ) = 0;
 
 	virtual void			PostInit() = 0;
 

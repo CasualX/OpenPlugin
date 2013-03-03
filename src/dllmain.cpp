@@ -10,12 +10,7 @@
 #include "name.h"
 #include "advspec.h"
 #include "transvm.h"
-//#include "protect.h"
 #include "dlfilter.h"
-
-#ifdef _LINUX
-pthread_t delay_thread;
-#endif
 
 inline ConVar* UnlockVar( const char* name )
 {
@@ -134,26 +129,16 @@ void PluginShutdown()
 #endif // OPENPLUGIN_INSECUREBYPASS
 }
 
-#ifndef _LINUX
-DWORD WINAPI DelayLoadPlugin( void* )
-#else
-void *DelayLoadPlugin( void * )
-#endif
+void DelayLoadPlugin()
 {
 	// Alternatively just hook IBaseClientDLL::Init and wait for it but oh well...
-#ifndef _LINUX
-	do Sleep( 500 );
-#else
-	do sleep( 1 );
-#endif
-	while ( !Ifaces.pCvar->FindVar( "viewmodel_fov_demo" ) );
-		//Sleep( 500 );
+	while ( !Ifaces.pCvar->FindVar( "viewmodel_fov_demo" ) )
+	{
+		std::chrono::milliseconds sleeptime(500);
+		std::this_thread::sleep_for(sleeptime);			
+	}
+
 	PluginInit();
-#ifndef _LINUX
-	return 0;
-#else
-	pthread_exit(NULL);
-#endif
 }
 
 //
@@ -167,51 +152,36 @@ BOOL APIENTRY DllMain( HMODULE hModule, DWORD dwReason, LPVOID lpReserved )
 	switch ( dwReason )
 	{
 	case DLL_PROCESS_ATTACH:
-
-		// Start by initing the ifaces
-		if ( !Ifaces.Init() )
-			return FALSE; // Wrong process?
-
-		// When loaded using a .vdf file we get loaded REALLY early and some functions aren't available in which case we delay loading the plugin.
-		// Thanks for pointing that out, AnAkIn :)
-		if ( Ifaces.pCvar->FindVar( "viewmodel_fov_demo" ) )
-		{
-			PluginInit();
-		}
-		else
-		{
-			::CreateThread( NULL, 0, &DelayLoadPlugin, NULL, 0, NULL );
-		}
+		LoadFunc();
 		break;
 
 	case DLL_PROCESS_DETACH:
-		PluginShutdown();
+		UnloadFunc();
 		break;
 	}
 	return TRUE;
 }
-#else
+#endif
+
 void LoadFunc()
 {
-		// Start by initing the ifaces
-		if ( !Ifaces.Init() )
-			return; // Wrong process?
+	// Start by initing the ifaces
+	if ( !Ifaces.Init() )
+		return; // Wrong process?
 
-		// When loaded using a .vdf file we get loaded REALLY early and some functions aren't available in which case we delay loading the plugin.
-		// Thanks for pointing that out, AnAkIn :)
-		if ( Ifaces.pCvar->FindVar( "viewmodel_fov_demo" ) )
-		{
-			PluginInit();
-		}
-		else
-		{
-			pthread_create(&delay_thread, NULL, DelayLoadPlugin, NULL);
-		}
+	// When loaded using a .vdf file we get loaded REALLY early and some functions aren't available in which case we delay loading the plugin.
+	// Thanks for pointing that out, AnAkIn :)
+	if ( Ifaces.pCvar->FindVar( "viewmodel_fov_demo" ) )
+		PluginInit();
+	else
+	{
+		std::thread delay_thread(DelayLoadPlugin);
+		delay_thread.detach();	
+	}
 }
 
 void UnloadFunc()
 {
-		PluginShutdown();
+	PluginShutdown();
 }
-#endif
 

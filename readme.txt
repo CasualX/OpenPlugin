@@ -10,8 +10,8 @@ Version 1.4
 This is a source code only release!
 Have a friend compile it for you if you don't know how yourself.
 
-Get a Visual C++ (express is free and works just fine). I used Visual C++ 2010 but older/newer versions should work.
-http://www.microsoft.com/visualstudio/en-us/products/2010-editions/visual-cpp-express
+Get Visual C++ 2012 (express is free and works just fine).
+https://www.microsoft.com/visualstudio/eng/downloads#d-2012-express
 
 Open src/OpenPlugin.sln
 Change 'Debug' (in the toolbars) to 'Release' and press F7 (or Build->Build Solution).
@@ -32,7 +32,7 @@ Since Valve broke the signature of AnAkIn's previous version you can be pretty s
 To have the engine automatically load the plugin on game launch, in put the .dll in tf\addons and create a new text file called OpenPlugin.vdf, in there paste:
 Plugin
 {
-    File    "addons/OpenPlugin.dll"
+    File    "addons/OpenPlugin"
 }
 If your TF2 crashes after an update or won't let you join VAC secured servers, remove the plugin and remove -insecure from your launch params.
 
