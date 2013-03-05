@@ -1,5 +1,4 @@
-#ifndef HGUARD_OPENPLUGIN_IFACES
-#define HGUARD_OPENPLUGIN_IFACES
+#pragma once
 
 //
 // Manages the static resources exposed by the game & engine
@@ -39,7 +38,7 @@ class Interfaces
 {
 public:
 
-	bool Init();
+	bool Init( CreateInterfaceFn pfnAppSystem );
 
 
 	// Module handles
@@ -75,5 +74,3 @@ public:
 	ISurface* pSurface;
 };
 extern Interfaces Ifaces;
-
-#endif // !HGUARD_OPENPLUGIN_IFACES

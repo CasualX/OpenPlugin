@@ -1,5 +1,4 @@
-#ifndef HGUARD_OPENFOV_SDK
-#define HGUARD_OPENFOV_SDK
+#pragma once
 
 class ICvar;
 class IBaseClientDLL;
@@ -59,6 +58,3 @@ struct CCmdArgs;
 #include "sdk/recvstuff.h"
 #include "sdk/convar.h"
 #include "sdk/icvar.h"
-
-
-#endif // !HGUARD_OPENFOV_SDK

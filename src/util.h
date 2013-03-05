@@ -1,5 +1,4 @@
-#ifndef HGUARD_OPENFOV_UTIL
-#define HGUARD_OPENFOV_UTIL
+#pragma once
 
 #include "sdk.h"
 #include "sdk/recvstuff.h"
@@ -47,8 +46,3 @@ public:
 	RecvProp* prop;
 	RecvVarProxyFn oldproxy;
 };
-
-
-
-
-#endif // !HGUARD_OPENFOV_UTIL

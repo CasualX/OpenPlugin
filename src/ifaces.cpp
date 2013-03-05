@@ -7,8 +7,10 @@
 
 Interfaces Ifaces;
 
-bool Interfaces::Init()
+bool Interfaces::Init( CreateInterfaceFn pfnAppSystem )
 {
+	this->pfnAppSystem = pfnAppSystem;
+
 	// Grab module handles
 #ifndef _LINUX
 	hmEngine = ::GetModuleHandleA( "engine.dll" );
@@ -26,36 +28,22 @@ bool Interfaces::Init()
 
 	pfnEngine = (CreateInterfaceFn) GetFuncAddress( hmEngine, "CreateInterface" );	
 
-#ifndef _LINUX	
-	if ( void* p = SigScan( hmEngine,
-			"\x8B\x11\x8B\x12\x83\xC4\x04\x50\xA1\x00\x00\x00\x00\x50\xFF\xD2",
-			"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x00\x00\x00\x00\xFF\xFF\xFF" ) )
-	{
-		pfnAppSystem = **(CreateInterfaceFn**)( (char*)p + 0x9 );
-	}	
-#else
-	if ( void* p = SigScan( (void*)pfnEngine,
-			"\x8B\x97\x84\x00\x00\x00\x8B\x0A\x89\x44\x24\x08\xA1\x00\x00\x00",
-			"\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\xFF\x00\x00\x00" ) )
-	{
-		pfnAppSystem = **(CreateInterfaceFn**)( (char*)p + 0xD );
-	}
-#endif
-	if ( !pfnAppSystem || !pfnEngine ) 
+	if ( !pfnEngine ) 
 		return false;
 	
 	// Grab the interfaces
 
 	pEngine			= (IVEngineClient*)		pfnAppSystem( "VEngineClient013",		NULL );
-	pEvents			= (IGameEventManager2*)		pfnAppSystem( "GAMEEVENTSMANAGER002",		NULL );
+	pEvents			= (IGameEventManager2*)	pfnAppSystem( "GAMEEVENTSMANAGER002",	NULL );
 	pVGUI			= (IEngineVGui*)		pfnAppSystem( "VEngineVGui001",			NULL );
-	pModelInfo		= (IVModelInfoClient*)		pfnAppSystem( "VModelInfoClient006",		NULL );
-	pModelRender		= (IVModelRender*)		pfnAppSystem( "VEngineModel016",		NULL );
+	pModelInfo		= (IVModelInfoClient*)	pfnAppSystem( "VModelInfoClient006",	NULL );
+	pModelRender	= (IVModelRender*)		pfnAppSystem( "VEngineModel016",		NULL );
 	pOverlay		= (IVDebugOverlay*)		pfnAppSystem( "VDebugOverlay003",		NULL );
-	pRenderView		= (IVRenderView*)		pfnAppSystem( "VEngineRenderView013",		NULL );
-	pMaterial		= (IMaterialSystem*)		pfnAppSystem( "VMaterialSystem080",		NULL );
-	
-	
+	pRenderView		= (IVRenderView*)		pfnAppSystem( "VEngineRenderView013",	NULL );
+	pMaterial		= (IMaterialSystem*)	pfnAppSystem( "VMaterialSystem080",		NULL );
+	pCvar			= (ICvar*)				pfnAppSystem( "VEngineCvar004",			NULL );
+	pSurface		= (ISurface*)			pfnAppSystem( "VGUI_Surface030",		NULL );
+
 	// Grab client module handle
 #ifndef _LINUX
 	hmClient = ::GetModuleHandleA( "client.dll" );
@@ -77,10 +65,7 @@ bool Interfaces::Init()
 		return false;
 	
 	pClient			= (IBaseClientDLL*)		pfnClient( "VClient017",			NULL );
-	pEntityList		= (IClientEntityList*)		pfnClient( "VClientEntityList003",		NULL );
-
-	pCvar			= (ICvar*)			pfnAppSystem( "VEngineCvar004",			NULL );
-	pSurface		= (ISurface*)			pfnAppSystem( "VGUI_Surface030",		NULL );
+	pEntityList		= (IClientEntityList*)	pfnClient( "VClientEntityList003",	NULL );
 
 #ifndef _LINUX
 	pGlobals		= **(CGlobalVarsBase***)( (*(unsigned int**)pClient)[0] + 0x60 ); // pClient->HudUpdate

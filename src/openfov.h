@@ -1,5 +1,4 @@
-#ifndef HGUARD_OPENFOV
-#define HGUARD_OPENFOV
+#pragma once
 
 #include "sdk.h"
 #include "util.h"
@@ -28,6 +27,3 @@ private:
 public:
 	static COpenFOV g;
 };
-
-
-#endif // !HGUARD_OPENFOV

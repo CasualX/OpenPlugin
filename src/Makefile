@@ -42,7 +42,6 @@ BUILD_OBJ_DIR = obj
 PLUGIN_OBJS = \
 	$(BUILD_OBJ_DIR)/advspec.o \
 	$(BUILD_OBJ_DIR)/dlfilter.o \
-	$(BUILD_OBJ_DIR)/dllmain.o \
 	$(BUILD_OBJ_DIR)/game.o \
 	$(BUILD_OBJ_DIR)/ifaces.o \
 	$(BUILD_OBJ_DIR)/name.o \

@@ -1,5 +1,4 @@
-#ifndef HGUARD_OPENPLUGIN_TRANSVM
-#define HGUARD_OPENPLUGIN_TRANSVM
+#pragma once
 
 //----------------------------------------------------------------
 // Transparent Viewmodel stuff
@@ -39,5 +38,3 @@ private:
 public:
 	static CTransVM g;
 };
-
-#endif // !HGUARD_OPENPLUGIN_TRANSVM

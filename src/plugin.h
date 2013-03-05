@@ -1,5 +1,4 @@
-#ifndef HGUARD_OPENPLUGIN
-#define HGUARD_OPENPLUGIN
+#pragma once
 
 #include "sdk.h"
 #include "sdk/convar.h"
@@ -55,5 +54,3 @@ private:
 	bool* bMagic;
 #endif
 };
-
-#endif // !HGUARD_OPENPLUGIN

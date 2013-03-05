@@ -1,5 +1,4 @@
-#ifndef HGUARD_OPENPLUGIN_DLFILTER
-#define HGUARD_OPENPLUGIN_DLFILTER
+#pragma once
 
 #include "sdk.h"
 #include "vmthooks.h"
@@ -33,5 +32,3 @@ private:
 public:
 	static CDownloadFilter g;
 };
-
-#endif // !HGUARD_OPENPLUGIN_DLFILTER

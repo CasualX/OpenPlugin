@@ -1,5 +1,4 @@
-#ifndef HGUARD_OPENPLUGIN_VMTHOOKS
-#define HGUARD_OPENPLUGIN_VMTHOOKS
+#pragma once
 
 #include <cassert>
 
@@ -156,6 +155,3 @@ inline VMTManager& VMTManager::GetHook( void* inst, unsigned int offset )
 {
 	return static_cast<VMTManager&>( VMTBaseManager::GetHook( inst, offset ) );
 }
-
-
-#endif // !HGUARD_OPENPLUGIN_VMTHOOKS

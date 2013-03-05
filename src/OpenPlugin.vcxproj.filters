@@ -4,9 +4,6 @@
     <ClCompile Include="ifaces.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="dllmain.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
     <ClCompile Include="name.cpp">
       <Filter>source</Filter>
     </ClCompile>

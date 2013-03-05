@@ -1,5 +1,4 @@
-#ifndef HGUARD_OPENPLUGIN_GAME
-#define HGUARD_OPENPLUGIN_GAME
+#pragma once
 
 //
 // TF2 specific entity stuff
@@ -38,7 +37,3 @@ public:
 	bool& bAlive( int pl );
 	int& iHealth( int pl );
 };
-
-
-
-#endif // !HGUARD_OPENPLUGIN_GAME

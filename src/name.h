@@ -1,5 +1,4 @@
-#ifndef HGUARD_OPENPLUGIN_NAME
-#define HGUARD_OPENPLUGIN_NAME
+#pragma once
 
 #include "sdk.h"
 
@@ -21,5 +20,3 @@ private:
 public:
 	static CNameEnabler g;
 };
-
-#endif // !HGUARD_OPENPLUGIN_NAME

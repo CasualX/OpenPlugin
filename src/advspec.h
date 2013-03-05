@@ -1,5 +1,4 @@
-#ifndef HGUARD_OPENPLUGIN_ADVSPEC
-#define HGUARD_OPENPLUGIN_ADVSPEC
+#pragma once
 
 //
 // Spectator enhancements
@@ -47,6 +46,3 @@
 //public:
 //	static CSpectator g;
 //};
-
-
-#endif // !HGUARD_OPENPLUGIN_ADVSPEC
