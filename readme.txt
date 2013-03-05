@@ -24,9 +24,7 @@ I now provide a precompiled version, copy the addons folder to your tf folder.
 
 2) How to install
 
-Once you have your OpenPlugin.dll get it into the hl2.exe process in whatever way you want.
-
-* Using Source engine's neat plugin system
+Once you have your OpenPlugin.dll, you need to load it using Source engine's neat plugin system
 Add -insecure to your launch params, the plugin will bypass the check that disallows joining VAC secured servers.
 Since Valve broke the signature of AnAkIn's previous version you can be pretty sure they don't actually like us doing it. USE AT YOUR OWN RISK!
 To have the engine automatically load the plugin on game launch, in put the .dll in tf\addons and create a new text file called OpenPlugin.vdf, in there paste:
@@ -35,11 +33,6 @@ Plugin
     File    "addons/OpenPlugin"
 }
 If your TF2 crashes after an update or won't let you join VAC secured servers, remove the plugin and remove -insecure from your launch params.
-
-* Use any other method of DLL injection
-Google around. Or ask me.
-
-
 
 3) Features
 
