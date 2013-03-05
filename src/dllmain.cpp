@@ -11,6 +11,7 @@
 #include "advspec.h"
 #include "transvm.h"
 #include "dlfilter.h"
+#include "dllmain.h"
 
 inline ConVar* UnlockVar( const char* name )
 {
