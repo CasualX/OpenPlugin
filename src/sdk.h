@@ -1,5 +1,6 @@
 #pragma once
 
+
 class ICvar;
 class IBaseClientDLL;
 class IClientNetworkable;
@@ -58,3 +59,4 @@ struct CCmdArgs;
 #include "sdk/recvstuff.h"
 #include "sdk/convar.h"
 #include "sdk/icvar.h"
+#include "sdk/isurface.h"

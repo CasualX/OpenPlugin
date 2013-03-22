@@ -6,9 +6,6 @@
 #include "sdk/globalvars.h"
 #include "sdk/const.h"
 
-#ifdef _LINUX
-#define __debugbreak();
-#endif
 
 #define NETVARX( OFF, NAME, ... ) static int OFF = 0; if ( !OFF ) { static const char* const vars[] = { __VA_ARGS__, NULL }; if ( !NetworkedVar( NAME, &OFF, vars ) ) __debugbreak(); }
 

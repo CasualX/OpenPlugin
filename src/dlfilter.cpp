@@ -1,9 +1,5 @@
 #include "stdafx.h"
 
-#ifndef _LINUX
-#include <intrin.h>
-#endif
-
 #include "dlfilter.h"
 #include "util.h"
 #include "ifaces.h"
@@ -47,7 +43,7 @@ void CDownloadFilter::Close()
 }
 
 
-bool __fastcall CDownloadFilter::HookedFileExists( void* _this, EDX const char* file, const char* pid )
+bool __fastcall CDownloadFilter::HookedFileExists( THIS_PARAM( void* _this ), const char* file, const char* pid )
 {
 	hook_t& hook = hook_t::GetHook( _this );
 	CDownloadFilter* me = (CDownloadFilter*) hook.UserData();

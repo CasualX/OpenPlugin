@@ -5,12 +5,7 @@
 
 // Allows the game (you just lost) to find us
 
-#ifndef _LINUX
-extern "C" __declspec(dllexport)
-	void* CreateInterface( const char* name, int* code );
-#else
-extern "C" __attribute__ ((visibility("default"))) void* CreateInterface( const char* name, int* code );
-#endif
+OPAPI void* CreateInterface( const char* name, int* code );
 
 // Plugin interface
 

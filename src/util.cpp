@@ -6,14 +6,12 @@
 #include "sdk/cdll_int.h"
 #include "sdk/globalvars.h"
 
-// hmod is not a module handle on linux, but a ptr to a function inside the module. It is later changed to the module handle.
-void* SigScan( void* hmod, const unsigned char* pat, const unsigned char* mask, unsigned int len )
+unsigned GetModuleSize( void* hmod )
 {
-	// Find module end
 #ifndef _LINUX
 	IMAGE_DOS_HEADER* dos = (IMAGE_DOS_HEADER*) hmod;
 	IMAGE_NT_HEADERS* nt = (IMAGE_NT_HEADERS*)( ((char*)dos) + dos->e_lfanew );
-	unsigned char* end = ((unsigned char*)hmod) + nt->OptionalHeader.SizeOfImage - len;
+	return nt->OptionalHeader.SizeOfImage;
 #else
 	// From AlliedMods sig scanning
 	Dl_info info;
@@ -29,9 +27,16 @@ void* SigScan( void* hmod, const unsigned char* pat, const unsigned char* mask, 
 		return NULL;
   
 	hmod = info.dli_fbase;
-	unsigned char* end = ((unsigned char*)hmod) + buf.st_size - len;
-	
+	return buf.st_size;
 #endif
+}
+
+// hmod is not a module handle on linux, but a ptr to a function inside the module. It is later changed to the module handle.
+void* SigScan( void* hmod, const unsigned char* pat, const unsigned char* mask, unsigned int len )
+{
+	// Find module end
+	unsigned char* end = ((unsigned char*)hmod) + GetModuleSize( hmod ) - len;
+
 	// Scan for signature
 	for ( unsigned char* p = (unsigned char*)hmod; p<=end; ++p )
 	{

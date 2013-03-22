@@ -78,6 +78,9 @@
     <ClInclude Include="dlfilter.h">
       <Filter>headers</Filter>
     </ClInclude>
+    <ClInclude Include="platform.h">
+      <Filter>headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="headers">

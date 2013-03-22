@@ -139,6 +139,7 @@ void PluginInit()
 #endif // OPENPLUGIN_INSECUREBYPASS
 }
 
+#ifdef USE_FANCY_CPP_FEATURES
 void DelayLoadPlugin()
 {
 	// Alternatively just hook IBaseClientDLL::Init and wait for it but oh well...
@@ -150,6 +151,7 @@ void DelayLoadPlugin()
 
 	PluginInit();
 }
+#endif // USE_FANCY_CPP_FEATURES
 
 COpenPlugin COpenPlugin::g;
 
@@ -159,8 +161,12 @@ bool COpenPlugin::Load( CreateInterfaceFn pfnAppSystem, CreateInterfaceFn pfnSer
 	if ( !Ifaces.Init(pfnAppSystem) )
 		return false;
 
+#ifdef USE_FANCY_CPP_FEATURES
 	std::thread delay_thread(DelayLoadPlugin);
 	delay_thread.detach();
+#else
+	PluginInit();
+#endif // USE_FANCY_CPP_FEATURES
 
 	return true;
 }

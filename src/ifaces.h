@@ -6,11 +6,6 @@
 
 #include "sdk.h"
 
-#ifdef _LINUX
-#define GetFuncAddress(pAddress, szFunction) dlsym(pAddress, szFunction)
-#else
-#define GetFuncAddress(pAddress, szFunction) ::GetProcAddress((HMODULE)pAddress, szFunction)
-#endif
 
 class IVEngineClient;
 class IGameEventManager2;

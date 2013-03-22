@@ -17,20 +17,20 @@
 #include <sys/stat.h>
 #endif
 
+#ifndef _LINUX
+// Only available on windows...
+#include <intrin.h>
+#else
+#define __debugbreak()
+#endif
+
 #include <assert.h>
 #include <cstring>
 #include <cstdio>
 #include <cstdlib>
+#ifdef USE_FANCY_CPP_FEATURES
 #include <thread>
-
-#ifdef NDEBUG
-#ifndef _LINUX
-#define ASSUME(e) __assume(e)
-#else
-#define ASSUME(e) do { if(!(e)) __builtin_unreachable(); } while(0)
-#endif
-#else
-#define ASSUME(e) assert(e)
-#endif // NDEBUG
+#endif // USE_FANCY_CPP_FEATURES
 
 // TODO: reference additional headers your program requires here
+#include "platform.h"

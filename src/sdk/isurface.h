@@ -13,6 +13,76 @@ typedef unsigned long HCursor;
 typedef unsigned long HTexture;
 typedef unsigned long HFont;
 
+template< typename Fn > Fn getvfunc( void* obj, int index, int offset = 0 );
+
+
+// Fix isurface.h!!!
+class ISurface
+{
+public:
+    void DrawSetColor(int r, int g, int b, int a)
+    {
+        typedef void ( __thiscall* OriginalFn )( ISurface*, int, int, int, int );
+        getvfunc<OriginalFn>( this, 11 )( this, r, g, b, a );
+    }
+    void DrawFilledRect(int x0, int y0, int x1, int y1)
+    {
+        typedef void ( __thiscall* OriginalFn )( ISurface*, int, int, int, int );
+        getvfunc<OriginalFn>( this, 12 )( this, x0, y0, x1, y1 );
+    }
+    void DrawOutlinedRect(int x0, int y0, int x1, int y1)
+    {
+        typedef void ( __thiscall* OriginalFn )( ISurface*, int, int, int, int );
+        getvfunc<OriginalFn>( this, 14 )( this, x0, y0, x1, y1 );
+    }
+    void DrawSetTextFont(unsigned long font)
+    {
+        typedef void ( __thiscall* OriginalFn )( ISurface*, unsigned long );
+        getvfunc<OriginalFn>( this, 17 )( this, font );
+    }
+    void DrawSetTextColor(int r, int g, int b, int a )
+    {
+        typedef void ( __thiscall* OriginalFn )( ISurface*, int, int, int, int );
+        getvfunc<OriginalFn>( this, 19 )( this, r, g, b, a );
+    }
+    void DrawSetTextPos(int x, int y )
+    {
+        typedef void ( __thiscall* OriginalFn )( ISurface*, int, int );
+        getvfunc<OriginalFn>( this, 20 )( this, x, y );
+    }
+    void DrawPrintText(const wchar_t *text, int textLen )
+    {
+        typedef void ( __thiscall* OriginalFn )( ISurface*, const wchar_t *, int, int );
+        return getvfunc<OriginalFn>( this, 22 )( this, text, textLen, 0 );
+    }
+    unsigned long CreateFont( )
+    {
+        typedef unsigned long ( __thiscall* OriginalFn )( ISurface* );
+        return getvfunc<OriginalFn>( this, 65+1 )( this );
+    }
+    void SetFontGlyphSet (unsigned long &font, const char *windowsFontName, int tall, int weight, int blur, int scanlines, int flags )
+    {
+        typedef void ( __thiscall* OriginalFn )( ISurface*, unsigned long, const char*, int, int, int, int, int, int, int );
+        getvfunc<OriginalFn>( this, 66+1 )( this, font, windowsFontName, tall, weight, blur, scanlines, flags, 0, 0 );
+    }
+    void GetTextSize(unsigned long font, const wchar_t *text, int &wide, int &tall)
+    {
+        typedef void ( __thiscall* OriginalFn )( ISurface*, unsigned long, const wchar_t *, int&, int& );
+        return getvfunc<OriginalFn>( this, 73 )( this, font, text, wide, tall );
+    }
+};
+class IPanel
+{
+public:
+	const char *GetName(unsigned int vguiPanel)
+	{
+		typedef const char* ( __thiscall* OriginalFn )( IPanel*, unsigned int );
+		return getvfunc<OriginalFn>( this, 36 )( this, vguiPanel );
+	}
+};
+
+
+/* Fixing is too hard...
 //-----------------------------------------------------------------------------
 // Purpose: Wraps contextless windows system functions
 //-----------------------------------------------------------------------------
@@ -213,7 +283,7 @@ public:
 
 	// global alpha setting functions
 	// affect all subsequent draw calls - shouldn't normally be used directly, only in Panel::PaintTraverse()
-	virtual void DrawSetAlphaMultiplier( float alpha /* [0..1] */ ) = 0;
+	virtual void DrawSetAlphaMultiplier( float alpha  ) = 0;
 	virtual float DrawGetAlphaMultiplier() = 0;
 
 	// web browser
@@ -251,6 +321,6 @@ public:
 	// Console-only.  Get the string to use for the current video mode for layout files.
 	virtual const char *GetResolutionKey( void ) const = 0;
 };
-
+*/
 
 #endif // !HGUARD_SDK_ISURFACE

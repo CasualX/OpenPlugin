@@ -3,14 +3,6 @@
 #include "sdk.h"
 #include "vmthooks.h"
 
-#ifdef _LINUX
-#define __fastcall
-#define __thiscall
-#define EDX
-#else
-#define EDX int edx,
-#endif
-
 class CDownloadFilter
 {
 public:
@@ -18,7 +10,7 @@ public:
 	bool Init();
 	void Close();
 
-	static bool __fastcall HookedFileExists( void* _this, EDX const char* file, const char* pid );
+	static bool __fastcall HookedFileExists( THIS_PARAM( void* _this ), const char* file, const char* pid );
 
 private:
 	void* pInst;

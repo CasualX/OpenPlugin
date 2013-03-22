@@ -1,8 +1,5 @@
 
 #include "stdafx.h"
-#ifndef _LINUX
-#include <intrin.h>
-#endif
 
 #include "name.h"
 #include "util.h"
