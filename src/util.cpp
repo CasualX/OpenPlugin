@@ -18,13 +18,13 @@ unsigned GetModuleSize( void* hmod )
 	struct stat buf;
 
 	if(!dladdr(hmod, &info))
-		return NULL;
+		return 0;
 
 	if(!info.dli_fbase || !info.dli_fname)
-		return NULL;
+		return 0;
 
 	if(stat(info.dli_fname, &buf) != 0)
-		return NULL;
+		return 0;
   
 	hmod = info.dli_fbase;
 	return buf.st_size;
