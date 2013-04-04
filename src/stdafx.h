@@ -5,6 +5,10 @@
 
 #pragma once
 
+#if defined(_MSC_VER) && _MSC_VER >= 1700
+#define USE_FANCY_CPP_FEATURES
+#endif
+
 #ifndef _LINUX
 #include "targetver.h"
 

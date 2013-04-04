@@ -3,6 +3,7 @@
 #include "sdk.h"
 #include "sdk/convar.h"
 
+
 // Allows the game (you just lost) to find us
 
 OPAPI void* CreateInterface( const char* name, int* code );

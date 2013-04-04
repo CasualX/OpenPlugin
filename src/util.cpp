@@ -6,7 +6,7 @@
 #include "sdk/cdll_int.h"
 #include "sdk/globalvars.h"
 
-unsigned GetModuleSize( void* hmod )
+unsigned GetModuleSize( unsigned int& hmod )
 {
 #ifndef _LINUX
 	IMAGE_DOS_HEADER* dos = (IMAGE_DOS_HEADER*) hmod;
@@ -17,7 +17,7 @@ unsigned GetModuleSize( void* hmod )
 	Dl_info info;
 	struct stat buf;
 
-	if(!dladdr(hmod, &info))
+	if(!dladdr((void*)hmod, &info))
 		return 0;
 
 	if(!info.dli_fbase || !info.dli_fname)
@@ -26,7 +26,7 @@ unsigned GetModuleSize( void* hmod )
 	if(stat(info.dli_fname, &buf) != 0)
 		return 0;
   
-	hmod = info.dli_fbase;
+	hmod = (unsigned int)info.dli_fbase;
 	return buf.st_size;
 #endif
 }
@@ -34,21 +34,25 @@ unsigned GetModuleSize( void* hmod )
 // hmod is not a module handle on linux, but a ptr to a function inside the module. It is later changed to the module handle.
 void* SigScan( void* hmod, const unsigned char* pat, const unsigned char* mask, unsigned int len )
 {
-	// Find module end
-	unsigned char* end = ((unsigned char*)hmod) + GetModuleSize( hmod ) - len;
-
-	// Scan for signature
-	for ( unsigned char* p = (unsigned char*)hmod; p<=end; ++p )
+	unsigned int iModuleSize = GetModuleSize( (unsigned int&)hmod );
+	if(iModuleSize != 0)
 	{
-		unsigned int i = 0;
-		do
+		// Find module end
+		unsigned char* end = ((unsigned char*)hmod) + iModuleSize - len;
+
+		// Scan for signature
+		for ( unsigned char* p = (unsigned char*)hmod; p<=end; ++p )
 		{
-			if ( (p[i]&mask[i])!=pat[i] )
-				goto cont;
-		}
-		while ( ++i<len );
-		return p;
+			unsigned int i = 0;
+			do
+			{
+				if ( (p[i]&mask[i])!=pat[i] )
+					goto cont;
+			}
+			while ( ++i<len );
+			return p;
 cont:;
+		}
 	}
 
 	return NULL;

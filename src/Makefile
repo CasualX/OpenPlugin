@@ -18,7 +18,7 @@ CFLAGS = \
 	-march=pentium3 -mmmx -msse -m32 -std=c++11 \
 	-fvisibility=hidden -fvisibility-inlines-hidden \
 	-fno-strict-aliasing -Wno-delete-non-virtual-dtor -Wno-unused -Werror \
-	-D_LINUX -DLINUX -DOPENPLUGIN_EXPORTS
+	-D_LINUX -DLINUX -DOPENPLUGIN_EXPORTS -DUSE_FANCY_CPP_FEATURES
 
 ifeq ($(CC), g++)
 	CFLAGS += -mfpmath=sse
