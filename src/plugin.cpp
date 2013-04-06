@@ -180,6 +180,16 @@ void COpenPlugin::Unload( void )
 #ifdef OPENPLUGIN_INSECUREBYPASS
 	COpenPlugin::g.UndoMagic();
 #endif // OPENPLUGIN_INSECUREBYPASS
+
+// Workaround for a problem with std::thread on Windows
+// When using std::thread, the first call to FreeLibrary (made by the engine) won't unload the module
+// We need to call FreeLibrary a second time to properly unload it
+#if !defined _LINUX && defined (USE_FANCY_CPP_FEATURES)
+	MEMORY_BASIC_INFORMATION mbi; 
+	static int address; 
+	VirtualQuery(&address, &mbi, sizeof(mbi)); 
+	FreeLibrary((HMODULE)mbi.AllocationBase);
+#endif
 }
 
 const char* COpenPlugin::GetPluginDescription( void )
