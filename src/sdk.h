@@ -1,5 +1,7 @@
 #pragma once
 
+#include "sdk/icommandline.h"
+
 
 class ICvar;
 class IBaseClientDLL;
@@ -26,8 +28,11 @@ class IClientEntity;
 #ifndef _LINUX
 extern "C" __declspec(dllimport)
 	void __cdecl Msg( const char* fmt, ... );
+extern "C" __declspec(dllimport)
+	ICommandLine*  __cdecl CommandLine_Tier0();
 #else
 extern "C" void Msg( const char* fmt, ... );
+extern "C" ICommandLine *CommandLine_Tier0();
 #endif
 
 //---- Interfaces ----
@@ -53,7 +58,6 @@ class ConVar;
 class ConCommand;
 class IConVar;
 struct CCmdArgs;
-
 
 #include "sdk/icliententitylist.h"
 #include "sdk/recvstuff.h"
