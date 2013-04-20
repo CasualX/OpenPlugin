@@ -134,9 +134,9 @@ void PluginInit()
 	}
 #endif
 
-#ifdef OPENPLUGIN_INSECUREBYPASS
+/*#ifdef OPENPLUGIN_INSECUREBYPASS
 	COpenPlugin::g.DoMagic();
-#endif // OPENPLUGIN_INSECUREBYPASS
+#endif // OPENPLUGIN_INSECUREBYPASS*/
 }
 
 #ifdef USE_FANCY_CPP_FEATURES
@@ -177,10 +177,10 @@ void COpenPlugin::Unload( void )
 	//CSpectator::g.Close();
 	CTransVM::g.Close();
 	CDownloadFilter::g.Close();
-#ifdef OPENPLUGIN_INSECUREBYPASS
+/*#ifdef OPENPLUGIN_INSECUREBYPASS
 	COpenPlugin::g.UndoMagic();
 #endif // OPENPLUGIN_INSECUREBYPASS
-
+*/
 // Workaround for a problem with std::thread on Windows
 // When using std::thread, the first call to FreeLibrary (made by the engine) won't unload the module
 // We need to call FreeLibrary a second time to properly unload it
@@ -196,7 +196,7 @@ const char* COpenPlugin::GetPluginDescription( void )
 {
 	return "OpenPlugin version 1.4 by Casual! Build " __DATE__ " " __TIME__ ;
 }
-
+/*
 #ifndef _LINUX
 void COpenPlugin::DoMagic()
 {
@@ -235,7 +235,7 @@ void COpenPlugin::MyPluginLoad( const CCmdArgs& args )
 	*b = true;
 }
 #endif
-
+*/
 
 
 // Blahblahblah not interested

@@ -8,6 +8,8 @@
 
 OPAPI void* CreateInterface( const char* name, int* code );
 
+void PluginInit();
+
 // Plugin interface
 
 class COpenPlugin
@@ -15,11 +17,11 @@ class COpenPlugin
 public:
 
 	static COpenPlugin g;
-#ifndef _LINUX	
+/*#ifndef _LINUX	
 	void DoMagic();
 	void UndoMagic();
 	static void MyPluginLoad( const CCmdArgs& args );
-#endif
+#endif*/
 	// IServerPluginCallbacks interface
 	virtual bool			Load( CreateInterfaceFn pfnFactory, CreateInterfaceFn pfnServer );
 	virtual void			Unload( void );
@@ -41,12 +43,12 @@ public:
 	virtual void			OnQueryCvarValueFinished( int iCookie, void *pPlayerEntity, int eStatus, const char *pCvarName, const char *pCvarValue );
 	virtual void			OnEdictAllocated( void *edict );
 	virtual void			OnEdictFreed( const void *edict );
-
+/*
 private:
 #ifndef _LINUX
 	ConCommand* plugin_load;
 	CommandCallbackFn fnOrigPload;
 
 	bool* bMagic;
-#endif
+#endif*/
 };

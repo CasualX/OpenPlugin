@@ -37,6 +37,9 @@
     <ClCompile Include="dlfilter.cpp">
       <Filter>source</Filter>
     </ClCompile>
+    <ClCompile Include="avi.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ifaces.h">
@@ -79,6 +82,9 @@
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="platform.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="avi.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>
