@@ -8,7 +8,6 @@
 #include "name.h"
 #include "advspec.h"
 #include "transvm.h"
-#include "dlfilter.h"
 
 extern "C" char __ImageBase;
 
@@ -73,10 +72,6 @@ void PluginInit()
 	{
 		Msg( "TransViewModel::Init() Failed!\n" );
 	}
-	if ( !CDownloadFilter::g.Init() )
-	{
-		Msg( "DownloadFilter::Init() Failed!\n" );
-	}
 
 	//if ( !CSpectator::g.Init() )
 	//{
@@ -84,7 +79,6 @@ void PluginInit()
 	//}
 
 	UnlockVar( "mat_picmip" );
-	UnlockVar( "viewmodel_fov_demo" );
 
 	// Assist movie makers so POV demos do not constantly force change the crosshair etc...
 	for ( ConCommandBase* p = Ifaces.pCvar->GetCommands(); p; p = p->pNext )
@@ -176,7 +170,6 @@ void COpenPlugin::Unload( void )
 	CNameEnabler::g.Close();
 	//CSpectator::g.Close();
 	CTransVM::g.Close();
-	CDownloadFilter::g.Close();
 /*#ifdef OPENPLUGIN_INSECUREBYPASS
 	COpenPlugin::g.UndoMagic();
 #endif // OPENPLUGIN_INSECUREBYPASS

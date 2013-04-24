@@ -42,11 +42,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <TargetName>avi</TargetName>
+    <TargetName>hfx</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <TargetName>avi</TargetName>
+    <TargetName>hfx</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -112,8 +112,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="advspec.h" />
-    <ClInclude Include="avi.h" />
-    <ClInclude Include="dlfilter.h" />
+    <ClInclude Include="hfx.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="ifaces.h" />
     <ClInclude Include="name.h" />
@@ -129,8 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="advspec.cpp" />
-    <ClCompile Include="avi.cpp" />
-    <ClCompile Include="dlfilter.cpp" />
+    <ClCompile Include="hfx.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="ifaces.cpp" />
     <ClCompile Include="name.cpp" />

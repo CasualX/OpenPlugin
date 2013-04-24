@@ -34,10 +34,7 @@
     <ClCompile Include="vmthooks.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="dlfilter.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="avi.cpp">
+    <ClCompile Include="hfx.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -78,13 +75,10 @@
     <ClInclude Include="vmthooks.h">
       <Filter>headers</Filter>
     </ClInclude>
-    <ClInclude Include="dlfilter.h">
-      <Filter>headers</Filter>
-    </ClInclude>
     <ClInclude Include="platform.h">
       <Filter>headers</Filter>
     </ClInclude>
-    <ClInclude Include="avi.h">
+    <ClInclude Include="hfx.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>
