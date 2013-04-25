@@ -12,7 +12,7 @@ public:
 	void Close();
 	
 	// This proxy is called to store the value for your FOV in your client entity
-	static void MyDefaultFOVProxy( const CRecvProxyData* pData, void* pStruct, void* pOut );
+	static void MyFOVProxy( const CRecvProxyData* pData, void* pStruct, void* pOut );
 
 	// Testing onchange callback...
 	static void OnChangeFOV( IConVar* var, const char* pOldValue, float flOldValue );

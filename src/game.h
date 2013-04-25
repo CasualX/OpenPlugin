@@ -21,6 +21,7 @@ enum tfclass_t
 };
 
 int GetObserverTarget( IClientEntity* pl );
+int GetPlayerCond( IClientEntity* pl );
 
 class PlayerResource
 {

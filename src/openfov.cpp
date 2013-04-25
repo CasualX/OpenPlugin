@@ -35,12 +35,12 @@ bool COpenFOV::Init()
 	fov_desired->fMaxVal = 130.0f;
 	//fov_desired->fnChangeCallback = &OnChangeFOV;
 
-	// Hook the CBasePlayer::m_iDefaultFOV netvar proxy
-	const char* vars[] = { "m_iDefaultFOV", NULL };
-	RecvProp* prop = NetworkedVar( "CBasePlayer", NULL, vars );
-	if ( !prop )
+	// Hook the CBasePlayer::m_iFOV netvar proxy
+	const char* varsFOV[] = { "m_iFOV", NULL };
+	RecvProp* propFOV = NetworkedVar( "CBasePlayer", NULL, varsFOV );
+	if ( !propFOV )
 		return false;
-	hook.Hook( prop, &MyDefaultFOVProxy );
+	hook.Hook( propFOV, &MyFOVProxy );
 
 	return true;
 }
@@ -53,11 +53,14 @@ void COpenFOV::Close()
 	}
 }
 
-void COpenFOV::MyDefaultFOVProxy( const CRecvProxyData* pData, void* pStruct, void* pOut )
+void COpenFOV::MyFOVProxy( const CRecvProxyData* pData, void* pStruct, void* pOut )
 {
 	// Just overwrite with our fov
-	*(int*)pOut = g.fov_desired->nValue;
+	IClientEntity* pMe = (IClientEntity*)pStruct;
+	if(!(GetPlayerCond(pMe) & (1 << 1))) // Make sure we aren't zooming
+		*(int*)pOut = g.fov_desired->nValue;
+	else
+		*(int*)pOut = pData->Value.Int;
 }
-
 
 

@@ -21,6 +21,13 @@ int GetObserverTarget( IClientEntity* pl )
 	return h;
 }
 
+int GetPlayerCond( IClientEntity* pl )
+{
+	NETVARX( off, "CTFPlayer", "m_Shared", "m_nPlayerCond" );
+
+	return *(int*)( ((char*)pl) + off );
+}
+
 int& PlayerResource::iPlayerClass( int pl )
 {
 	NETVARX( off, "CPlayerResource", "m_iPlayerClass" );
