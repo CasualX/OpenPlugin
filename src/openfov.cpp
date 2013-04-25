@@ -55,12 +55,13 @@ void COpenFOV::Close()
 
 void COpenFOV::MyFOVProxy( const CRecvProxyData* pData, void* pStruct, void* pOut )
 {
-	// Just overwrite with our fov
-	IClientEntity* pMe = (IClientEntity*)pStruct;
-	if(!(GetPlayerCond(pMe) & (1 << 1))) // Make sure we aren't zooming
-		*(int*)pOut = g.fov_desired->nValue;
-	else
-		*(int*)pOut = pData->Value.Int;
+	int& fov = *(int*) pOut;
+	fov = pData->Value.Int;
+
+	// If m_iFOV is zero, we should be using default fov.
+	// Here we can then force our own fov value.
+	if ( !fov )
+		fov = g.fov_desired->nValue;
 }
 
 
