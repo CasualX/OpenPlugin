@@ -34,7 +34,7 @@
     <ClCompile Include="vmthooks.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="hfx.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -78,7 +78,7 @@
     <ClInclude Include="platform.h">
       <Filter>headers</Filter>
     </ClInclude>
-    <ClInclude Include="hfx.h">
+    <ClInclude Include="main.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>

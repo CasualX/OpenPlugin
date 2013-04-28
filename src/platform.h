@@ -41,8 +41,10 @@
 // Here or in util.h?
 #ifdef _LINUX
 #define GetFuncAddress(pAddress, szFunction) dlsym(pAddress, szFunction)
+#define GetHandleOfModule(szModuleName) dlopen(szModuleName".so", RTLD_NOLOAD)
 #else
 #define GetFuncAddress(pAddress, szFunction) ::GetProcAddress((HMODULE)pAddress, szFunction)
+#define GetHandleOfModule(szModuleName) GetModuleHandleA(szModuleName".dll")
 #endif
 
 

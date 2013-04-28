@@ -17,11 +17,17 @@ You need to put bin/hfx.dll in your Steam/SteamApps/<account>/Team Fortress 2/bi
 
 Linux
 
-You need to load it using Source engine's neat plugin system.
-To have the engine automatically load the plugin on game launch, put addons/OpenPlugin.so and addons/OpenPlugin.vdf in the Steam/SteamApps/<account>/Team Fortress 2/tf/addons folder.
+You need to put bin/OpenPlugin.so in your Steam/SteamApps/<account>/Team Fortress 2/bin folder.
+In Steam, right click on TF2, properties, and set launch options. You may already have launch options, for example:
+-novid -console
+You need to change it to:
+LD_PRELOAD=OpenPlugin.so %command% -novid -console
+
 
 2) How to compile
 =================
+
+Windows
 
 This is a source code only release!
 Have a friend compile it for you if you don't know how yourself.
@@ -33,6 +39,10 @@ Open src/OpenPlugin.sln
 Change 'Debug' (in the toolbars) to 'Release' and press F7 (or Build->Build Solution).
 Output can be found in src/Release/OpenPlugin.dll
 
+Linux
+
+Make sure you have clang or gcc installed. Modify the CC= line in the Makefile to set the one you want to compile with.
+Open a terminal and change the directory to the src folder, type "make" and it will compile the library.
 
 3) Features
 ===========

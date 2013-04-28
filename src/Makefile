@@ -5,10 +5,10 @@ NAME = OpenPlugin
 DEBUG = no
 
 # Directory where the module will go after the build is done
-CP_PATH = "../addons/$(NAME).so"
+CP_PATH = "../bin/$(NAME).so"
 
 # Linker & compiler - g++ or clang++ can be used
-CC = g++
+CC = clang++
 
 # link flags for your mod, make sure to include any special libraries here
 LDFLAGS = bin/libtier0.so -shared -m32
@@ -22,6 +22,11 @@ CFLAGS = \
 
 ifeq ($(CC), g++)
 	CFLAGS += -mfpmath=sse
+else
+	CFLAGS += -D__GCC_HAVE_SYNC_COMPARE_AND_SWAP_1 \
+	-D__GCC_HAVE_SYNC_COMPARE_AND_SWAP_2 \
+	-D__GCC_HAVE_SYNC_COMPARE_AND_SWAP_4 \
+	-D__GCC_HAVE_SYNC_COMPARE_AND_SWAP_8
 endif
 	
 # special flags depending if we are in release or debug mode
@@ -51,6 +56,7 @@ PLUGIN_OBJS = \
 	$(BUILD_OBJ_DIR)/transvm.o \
 	$(BUILD_OBJ_DIR)/util.o \
 	$(BUILD_OBJ_DIR)/vmthooks.o \
+	$(BUILD_OBJ_DIR)/main.o \
 
 all: dirs $(NAME).so cp
 

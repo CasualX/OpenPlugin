@@ -112,9 +112,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="advspec.h" />
-    <ClInclude Include="hfx.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="ifaces.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="name.h" />
     <ClInclude Include="openfov.h" />
     <ClInclude Include="platform.h" />
@@ -128,9 +128,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="advspec.cpp" />
-    <ClCompile Include="hfx.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="ifaces.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="name.cpp" />
     <ClCompile Include="openfov.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Full</Optimization>
