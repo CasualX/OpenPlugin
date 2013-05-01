@@ -13,7 +13,8 @@ Windows
 First, make sure you have Visual C++ Redistributable 2012 installed. You can download it here:
 http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU1/vcredist_x86.exe
 
-You need to put bin/hfx.dll in your Steam/SteamApps/<account>/Team Fortress 2/bin folder.
+You can extract the content of the zip anywhere on your hard drive. Just launch OpenPlugin.bat once, this will set up
+the environnement variable to allow the game to find hfx.dll
 
 Linux
 
