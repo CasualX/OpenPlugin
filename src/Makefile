@@ -18,7 +18,7 @@ CFLAGS = \
 	-march=pentium3 -mmmx -msse -m32 -std=c++11 \
 	-fvisibility=hidden -fvisibility-inlines-hidden \
 	-fno-strict-aliasing -Wno-delete-non-virtual-dtor -Wno-unused -Werror \
-	-D_LINUX -DLINUX -DOPENPLUGIN_EXPORTS -DUSE_FANCY_CPP_FEATURES
+	-D_LINUX -DLINUX -DOPENPLUGIN_EXPORTS
 
 ifeq ($(CC), g++)
 	CFLAGS += -mfpmath=sse
@@ -45,7 +45,6 @@ BUILD_OBJ_DIR = obj
 #####################################################################
 
 PLUGIN_OBJS = \
-	$(BUILD_OBJ_DIR)/advspec.o \
 	$(BUILD_OBJ_DIR)/game.o \
 	$(BUILD_OBJ_DIR)/ifaces.o \
 	$(BUILD_OBJ_DIR)/name.o \
@@ -55,7 +54,6 @@ PLUGIN_OBJS = \
 	$(BUILD_OBJ_DIR)/stdafx.o \
 	$(BUILD_OBJ_DIR)/transvm.o \
 	$(BUILD_OBJ_DIR)/util.o \
-	$(BUILD_OBJ_DIR)/vmthooks.o \
 	$(BUILD_OBJ_DIR)/main.o \
 
 all: dirs $(NAME).so cp

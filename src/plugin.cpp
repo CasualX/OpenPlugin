@@ -6,7 +6,6 @@
 
 #include "openfov.h"
 #include "name.h"
-#include "advspec.h"
 #include "transvm.h"
 
 extern "C" char __ImageBase;
@@ -52,11 +51,6 @@ void PluginInit()
 	{
 		Msg( "TransViewModel::Init() Failed!\n" );
 	}
-
-	//if ( !CSpectator::g.Init() )
-	//{
-	//	Msg( "Spectator::Init() Failed!\n" );
-	//}
 
 	UnlockVar( "mat_picmip" );
 
@@ -117,11 +111,7 @@ void DelayLoadPlugin()
 		std::this_thread::sleep_for(sleeptime);		
 	}
 	
-#ifndef _LINUX
-	void *hmEngine = ::GetModuleHandleA( "engine.dll" );
-#else
-	void *hmEngine = dlopen("engine.so", RTLD_LAZY);
-#endif
+	void *hmEngine = GetHandleOfModule( "engine" );
 	
 	CreateInterfaceFn pfnEngine = (CreateInterfaceFn) GetFuncAddress( hmEngine, "CreateInterface");
 	CreateInterfaceFn pfnAppSystem = NULL;

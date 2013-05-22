@@ -68,6 +68,9 @@
       </ModuleDefinitionFile>
       <EntryPointSymbol>DllMain</EntryPointSymbol>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(TargetPath)" "..\bin\$(TargetFileName)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -86,7 +89,7 @@
       <StringPooling>true</StringPooling>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
@@ -109,9 +112,11 @@
       <AdditionalLibraryDirectories>lib/</AdditionalLibraryDirectories>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(TargetPath)" "..\bin\$(TargetFileName)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="advspec.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="ifaces.h" />
     <ClInclude Include="main.h" />
@@ -124,10 +129,8 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="transvm.h" />
     <ClInclude Include="util.h" />
-    <ClInclude Include="vmthooks.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="advspec.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="ifaces.cpp" />
     <ClCompile Include="main.cpp" />
@@ -144,7 +147,6 @@
     </ClCompile>
     <ClCompile Include="transvm.cpp" />
     <ClCompile Include="util.cpp" />
-    <ClCompile Include="vmthooks.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

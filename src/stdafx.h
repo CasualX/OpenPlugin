@@ -5,10 +5,6 @@
 
 #pragma once
 
-#if defined(_MSC_VER) && _MSC_VER >= 1700
-#define USE_FANCY_CPP_FEATURES
-#endif
-
 #ifndef _LINUX
 #include "targetver.h"
 
@@ -32,9 +28,7 @@
 #include <cstring>
 #include <cstdio>
 #include <cstdlib>
-#ifdef USE_FANCY_CPP_FEATURES
 #include <thread>
-#endif // USE_FANCY_CPP_FEATURES
 
 // TODO: reference additional headers your program requires here
 #include "platform.h"

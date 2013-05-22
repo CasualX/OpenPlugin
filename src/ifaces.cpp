@@ -12,12 +12,12 @@ bool Interfaces::Init( CreateInterfaceFn pfnAppSystem )
 	this->pfnAppSystem = pfnAppSystem;
 
 	// Grab module handles
-#ifndef _LINUX
-	hmEngine = ::GetModuleHandleA( "engine.dll" );
-	hmTier0 = ::GetModuleHandleA( "tier0.dll" );
+
+	hmEngine = GetHandleOfModule( "engine" );
+#ifndef _LINUX	
+	hmTier0 = GetHandleOfModule( "tier0" );
 #else
-	hmEngine = dlopen("engine.so", RTLD_LAZY);
-	hmTier0 = dlopen("libtier0.so", RTLD_LAZY);
+	hmTier0 = GetHandleOfModule("libtier0");
 #endif
 
 	if ( !hmEngine || !hmTier0 )
@@ -46,13 +46,13 @@ bool Interfaces::Init( CreateInterfaceFn pfnAppSystem )
 
 	// Grab client module handle
 #ifndef _LINUX
-	hmClient = ::GetModuleHandleA( "client.dll" );
+	hmClient = GetHandleOfModule( "client" );
 #else
 	const char* szGameDir = pEngine->GetGameDirectory();
 	char szClientBinaryPath[FILENAME_MAX];
 	snprintf(szClientBinaryPath, sizeof(szClientBinaryPath), "%s/bin/client.so", szGameDir);
 	
-	hmClient = dlopen(szClientBinaryPath, RTLD_LAZY);
+	hmClient = dlopen(szClientBinaryPath, RTLD_NOLOAD);
 #endif
 	
 	if(!hmClient)

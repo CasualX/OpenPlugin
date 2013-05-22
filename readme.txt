@@ -3,18 +3,32 @@ Taking feature requests.
 
 Version 1.4
 
-Since Valve the previous versions you can be pretty sure they don't actually like us doing it. USE AT YOUR OWN RISK!
+As some people seem to have been VAC banned for it recently, we no longer provide binaries, you have to compile it yourself.
+
+1) How to compile
+=================
+
+Windows
+
+Get Visual C++ 2012 (express is free and works just fine).
+https://www.microsoft.com/visualstudio/eng/downloads#d-2012-express
+
+Open src/OpenPlugin.sln
+Change 'Debug' (in the toolbars) to 'Release' and press F7 (or Build->Build Solution).
+
+Linux
+
+Make sure you have clang or gcc installed. Modify the CC= line in the Makefile to set the one you want to compile with.
+Open a terminal and change the directory to the src folder, type "make" and it will compile the library.
+
 
 1) How to install
 =================
 
 Windows
 
-First, make sure you have Visual C++ Redistributable 2012 installed. You can download it here:
-http://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU1/vcredist_x86.exe
-
-You can extract the content of the zip anywhere on your hard drive. Just launch OpenPlugin.bat
- once, this will set up the environnement variable to allow the game to find hfx.dll. Then just restart Steam.
+You can extract the content of the zip anywhere on your hard drive. Just launch OpenPlugin.bat once, this will set up
+the environnement variable to allow the game to find hfx.dll
 
 Linux
 
@@ -23,27 +37,6 @@ In Steam, right click on TF2, properties, and set launch options. You may alread
 -novid -console
 You need to change it to:
 LD_PRELOAD=OpenPlugin.so %command% -novid -console
-
-
-2) How to compile
-=================
-
-Windows
-
-This is a source code only release!
-Have a friend compile it for you if you don't know how yourself.
-
-Get Visual C++ 2012 (express is free and works just fine).
-https://www.microsoft.com/visualstudio/eng/downloads#d-2012-express
-
-Open src/OpenPlugin.sln
-Change 'Debug' (in the toolbars) to 'Release' and press F7 (or Build->Build Solution).
-Output can be found in src/Release/OpenPlugin.dll
-
-Linux
-
-Make sure you have clang or gcc installed. Modify the CC= line in the Makefile to set the one you want to compile with.
-Open a terminal and change the directory to the src folder, type "make" and it will compile the library.
 
 3) Features
 ===========

@@ -28,16 +28,6 @@
 #define THIS_PARAM( x ) x, int edx
 #endif
 
-
-// Because not everyone has a compiler with fancy C++11 features...
-// DEFINE ME IN COMPILER PREPROCESSOR DEFINITIONS!!
-//
-// This WILL make the plugin fail to load when using a .vdf to autoload the plugin on launch,
-//  load it manually using plugin_load in your autoexec to get around this.
-
-//#define USE_FANCY_CPP_FEATURES
-
-
 // Here or in util.h?
 #ifdef _LINUX
 #define GetFuncAddress(pAddress, szFunction) dlsym(pAddress, szFunction)

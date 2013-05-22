@@ -22,16 +22,10 @@
     <ClCompile Include="util.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="advspec.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
     <ClCompile Include="game.cpp">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="transvm.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="vmthooks.cpp">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -63,16 +57,10 @@
     <ClInclude Include="util.h">
       <Filter>headers</Filter>
     </ClInclude>
-    <ClInclude Include="advspec.h">
-      <Filter>headers</Filter>
-    </ClInclude>
     <ClInclude Include="game.h">
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="transvm.h">
-      <Filter>headers</Filter>
-    </ClInclude>
-    <ClInclude Include="vmthooks.h">
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="platform.h">
