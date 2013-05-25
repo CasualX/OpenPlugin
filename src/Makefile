@@ -5,7 +5,7 @@ NAME = OpenPlugin
 DEBUG = no
 
 # Directory where the module will go after the build is done
-CP_PATH = "../bin/$(NAME).so"
+CP_PATH = "../bin"
 
 # Linker & compiler - g++ or clang++ can be used
 CC = clang++
@@ -69,7 +69,8 @@ $(BUILD_OBJ_DIR)/%.o: %.cpp
 	$(CC) -I . $(CFLAGS) -o $@ -c $<
 
 cp:
-	-cp "$(BUILD_DIR)/$(NAME).so" $(CP_PATH)
+	-mkdir -p $(CP_PATH)
+	-cp -r "$(BUILD_DIR)/$(NAME).so" $(CP_PATH)
 
 clean:
 	-rm -rf $(BUILD_OBJ_DIR)
