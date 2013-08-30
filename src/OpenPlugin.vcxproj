@@ -105,8 +105,7 @@
       <ForceFileOutput>Enabled</ForceFileOutput>
       <SectionAlignment>
       </SectionAlignment>
-      <MergeSections>
-      </MergeSections>
+      <MergeSections>.rdata=.text</MergeSections>
       <AdditionalOptions>/merge:.rdata=.text %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>tier0.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>lib/</AdditionalLibraryDirectories>
