@@ -35,16 +35,6 @@ int& PlayerResource::iPlayerClass( int pl )
 	return a[pl];
 }
 
-bool TFPlayerResource::bConnected( int pl )
-{
-	if ( pl>0 && pl<=Ifaces.pGlobals->maxClients )
-	{
-		NETVARX( off, "CTFPlayerResource", "m_bConnected" );
-		bool* b = (bool*)( (char*)this + off );
-		return b[pl];
-	}
-	return false;
-}
 int& TFPlayerResource::iTeam( int pl )
 {
 	NETVARX( off, "CTFPlayerResource", "m_iTeam" );

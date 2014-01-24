@@ -131,44 +131,6 @@ bool GetInformationPointer( void* ptr, char (&buf)[64], unsigned int& off )
 }
 #endif
 
-int FindPlayerInServer( const char* partial, player_info_t* pinfo )
-{
-	if ( Ifaces.pEngine->IsInGame() )
-	{
-		int maxClients = Ifaces.pGlobals->maxClients;
-
-		// Try to find exact match
-		for ( int i = 1; i<=maxClients; i++ )
-		{
-			if ( Ifaces.pEngine->GetPlayerInfo( i, pinfo ) && !strcmp( pinfo->name, partial ) )
-			{
-				return i;
-			}
-		}
-		// Try to find a weaker match
-		for ( int i = 1; i<=maxClients; i++ )
-		{
-			if ( Ifaces.pEngine->GetPlayerInfo( i, pinfo ) && strstr( pinfo->name, partial ) )
-			{
-				// Find another match
-				for ( int j = i+1; j<=maxClients; j++ )
-				{
-					if ( Ifaces.pEngine->GetPlayerInfo( j, pinfo ) && strstr( pinfo->name, partial ) )
-					{
-						// Multiple matches detected
-						return -2;
-					}
-				}
-				// Unique partial match
-				Ifaces.pEngine->GetPlayerInfo( i, pinfo );
-				return i;
-			}
-		}
-	}
-	// Nobody by that name found
-	return -1;
-}
-
 
 void NetPropHook::Hook( RecvProp* prop, RecvVarProxyFn hook )
 {

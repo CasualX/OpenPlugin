@@ -55,7 +55,6 @@ public:
 	IVModelRender* pModelRender;
 	IVDebugOverlay* pOverlay;
 	IMaterialSystem* pMaterial;
-	CGlobalVarsBase* pGlobals;
 
 	// client.dll
 	IBaseClientDLL* pClient;

@@ -21,7 +21,7 @@
 // Only available on windows...
 #include <intrin.h>
 #else
-#define __debugbreak()
+#define __debugbreak() 0
 #endif
 
 #include <assert.h>

@@ -67,12 +67,6 @@ bool Interfaces::Init( CreateInterfaceFn pfnAppSystem )
 	pClient			= (IBaseClientDLL*)		pfnClient( "VClient017",			NULL );
 	pEntityList		= (IClientEntityList*)	pfnClient( "VClientEntityList003",	NULL );
 
-#ifndef _LINUX
-	pGlobals		= **(CGlobalVarsBase***)( (*(unsigned int**)pClient)[0] + 0x69 ); // pClient->HudUpdate
-#else
-	pGlobals		= **(CGlobalVarsBase***)( (*(unsigned int**)pClient)[0] + 0x85 ); // pClient->HudUpdate
-#endif
-
 
 #ifndef _LINUX	  
 	if ( char* p = (char*)SigScan( hmClient,	

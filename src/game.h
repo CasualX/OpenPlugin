@@ -33,7 +33,6 @@ public:
 class TFPlayerResource : public PlayerResource
 {
 public:
-	bool bConnected( int pl );
 	int& iTeam( int pl );
 	bool& bAlive( int pl );
 	int& iHealth( int pl );

@@ -20,8 +20,6 @@ template< typename T > inline T& GetProp( IClientEntity* pEnt, int offset ) { re
 
 bool GetInformationPointer( void* ptr, char (&buf)[64], unsigned int& off );
 
-int FindPlayerInServer( const char* partial, player_info_t* pinfo );
-
 
 class NetPropHook
 {
